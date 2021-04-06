@@ -44,31 +44,36 @@ var marker4 = new mapboxgl.Marker()
     .setPopup(popup4)
     .addTo(map);
 
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
 document.getElementById('fly1').addEventListener('click', function () {
     map.flyTo({
         center: [140.098771, 35.26858], //Maebara
+        zoom: 8,
         essential: true
     });
 });
 document.getElementById('fly2').addEventListener('click', function () {
     map.flyTo({
         center: [50.653839, 61.088177], //Vizinga
+        zoom: 8,
         essential: true
     });
 });
 document.getElementById('fly3').addEventListener('click', function () {
     map.flyTo({
         center: [-114.33579, 55.274602], //Smith
+        zoom: 8,
         essential: true
     });
 });
 document.getElementById('fly4').addEventListener('click', function () {
     map.flyTo({
         center: [-50.29541, -3.206333], //Baião
+        zoom: 8,
         essential: true
     });
 });
-
 
 function Smith() {
 
@@ -79,27 +84,23 @@ function Smith() {
     var lang = 'nl';
     var apiKey = 'b4c9089f18934979c93eaee00b976e45';
 
-    // construct request
     var request = url + '?lat=' + lat + '&lon=' + lon + '&units=' + unit + '&lang=' + lang + '&appid=' + apiKey;
 
-    // get current weather
     fetch(request)
 
-        // parse response to JSON format
         .then(function (response) {
             return response.json();
         })
 
-        // do something with response
         .then(function (response) {
             var naam = response.name;
             var type = response.weather[0].description;
             var temp = response.main.temp;
             var icon = 'http://openweathermap.org/img/wn/' + response.weather[0].icon + '.png';
+            var weatherBox = document.getElementById('weather');
             weersToestand = '<div class="weersToestand">';
             weersToestand += '<div class="icon"> <img src="' + icon + '"> </div>';
             weersToestand += '</div>';
-            var weatherBox = document.getElementById('weather');
             weatherBox.innerHTML = naam + '<br>' + temp + '&#176;C <br>' + type + weersToestand;
         });
 }
@@ -113,27 +114,23 @@ function Maebara() {
     var lang = 'nl';
     var apiKey = 'b4c9089f18934979c93eaee00b976e45';
 
-    // construct request
     var request = url + '?lat=' + lat + '&lon=' + lon + '&units=' + unit + '&lang=' + lang + '&appid=' + apiKey;
 
-    // get current weather
     fetch(request)
 
-        // parse response to JSON format
         .then(function (response) {
             return response.json();
         })
 
-        // do something with response
         .then(function (response) {
             var naam = response.name;
             var type = response.weather[0].description;
             var temp = response.main.temp;
             var icon = 'http://openweathermap.org/img/wn/' + response.weather[0].icon + '.png';
+            var weatherBox = document.getElementById('weather');
             weersToestand = '<div class="weersToestand">';
             weersToestand += '<div class="icon"> <img src="' + icon + '"> </div>';
             weersToestand += '</div>';
-            var weatherBox = document.getElementById('weather');
             weatherBox.innerHTML = naam + '<br>' + temp + '&#176;C <br>' + type + weersToestand;
         });
 }
@@ -147,27 +144,23 @@ function Vizinga() {
     var lang = 'nl';
     var apiKey = 'b4c9089f18934979c93eaee00b976e45';
 
-    // construct request
     var request = url + '?lat=' + lat + '&lon=' + lon + '&units=' + unit + '&lang=' + lang + '&appid=' + apiKey;
 
-    // get current weather
     fetch(request)
 
-        // parse response to JSON format
         .then(function (response) {
             return response.json();
         })
 
-        // do something with response
         .then(function (response) {
             var naam = response.name;
             var type = response.weather[0].description;
             var temp = response.main.temp;
             var icon = 'http://openweathermap.org/img/wn/' + response.weather[0].icon + '.png';
+            var weatherBox = document.getElementById('weather');
             weersToestand = '<div class="weersToestand">';
             weersToestand += '<div class="icon"> <img src="' + icon + '"> </div>';
             weersToestand += '</div>';
-            var weatherBox = document.getElementById('weather');
             weatherBox.innerHTML = naam + '<br>' + temp + '&#176;C <br>' + type + weersToestand;
         });
 }
@@ -181,32 +174,28 @@ function Baião() {
     var lang = 'nl';
     var apiKey = 'b4c9089f18934979c93eaee00b976e45';
 
-    // construct request
     var request = url + '?lat=' + lat + '&lon=' + lon + '&units=' + unit + '&lang=' + lang + '&appid=' + apiKey;
 
-    // get current weather
     fetch(request)
 
-        // parse response to JSON format
         .then(function (response) {
             return response.json();
         })
 
-        // do something with response
         .then(function (response) {
             var naam = response.name;
             var type = response.weather[0].description;
             var temp = response.main.temp;
             var icon = 'http://openweathermap.org/img/wn/' + response.weather[0].icon + '.png';
+            var weatherBox = document.getElementById('weather');
             weersToestand = '<div class="weersToestand">';
             weersToestand += '<div class="icon"> <img src="' + icon + '"> </div>';
             weersToestand += '</div>';
-            var weatherBox = document.getElementById('weather');
             weatherBox.innerHTML = naam + '<br>' + temp + '&#176;C <br>' + type + weersToestand;
         });
 }
 
-Maebara();
+Maebara(); //begin bij Maebara, Japan
 document.getElementById('fly1').onclick = function () {
     Maebara();
 }
